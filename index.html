@@ -1,13 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+        }
+
+        .first_block {
+            width: 480px;
+            height: 459px;
+            background: #C2F5FF;
+            border-radius: 12px;
+            margin-top: 158px;
+            margin-bottom: 157px;
+            text-align: center;
+        }
+
+        .text_first_block {
+            font-family: 'StratosSkyeng';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 48px;
+            text-align: center;
+            font-feature-settings: 'pnum' on, 'lnum' on;
+            color: #004980;
+            padding-left: 136px;
+            padding-right: 136px;
+            padding-bottom: 48px;
+        }
+
+        .buttons {
+            padding-left: 69px;
+            padding-right: 69px;
+
+        }
+
+        .button {
+            font-family: 'StratosSkyeng';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 64px;
+            line-height: 72px;
+            align-items: center;
+            text-align: center;
+            color: #0080C1;
+            width: 98px;
+            height: 98px;
+            background: #FFFFFF;
+            border-radius: 12px;
+            text-align: center;
+
+        }
+
+        ::placeholder {
+            color: rgb(102, 0, 255);
+        }
+
+        .input_first_block {
+            margin-left: 117px;
+            margin-top: 67px;
+            width: 246px;
+            height: 50px;
+            background: #7AC100;
+            border-radius: 12px;
+            width: 246px;
+            height: 48px;
+
+            /* Pres → Caption S */
+
+            font-family: 'StratosSkyeng';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            /* or 133% */
+
+            display: flex;
+            align-items: center;
+            text-align: center;
+            font-feature-settings: 'pnum' on, 'lnum' on;
+
+            color: #FFFFFF;
+        }
+    </style>
 </head>
+
 <body>
-    div
-    
+    <div class="background">
+        <div class="first_block">
+            <h1 class="text_first_block">Выбери сложность</h1>
+            <div class="buttons">
+                <input class="button" type="text" required placeholder="1">
+                <input class="button" type="text" required placeholder="2">
+                <input class="button" type="text" required placeholder="3">
+            </div>
+            <input class="input_first_block" type="text" required placeholder="Старт">
+
+        </div>
+    </div>
+
 </body>
+
 </html>
