@@ -61,12 +61,8 @@
             height: 98px;
             background: #FFFFFF;
             border-radius: 12px;
-            text-align: center;
+            border-color: #FFFFFF;
 
-        }
-
-        ::placeholder {
-            color: rgb(102, 0, 255);
         }
 
         .input_first_block {
@@ -78,21 +74,16 @@
             border-radius: 12px;
             width: 246px;
             height: 48px;
-
-            /* Pres → Caption S */
-
             font-family: 'StratosSkyeng';
             font-style: normal;
             font-weight: 400;
             font-size: 24px;
             line-height: 32px;
-            /* or 133% */
-
             display: flex;
             align-items: center;
             text-align: center;
+            justify-content: center;
             font-feature-settings: 'pnum' on, 'lnum' on;
-
             color: #FFFFFF;
         }
     </style>
@@ -103,14 +94,48 @@
         <div class="first_block">
             <h1 class="text_first_block">Выбери сложность</h1>
             <div class="buttons">
-                <input class="button" type="text" required placeholder="1">
-                <input class="button" type="text" required placeholder="2">
-                <input class="button" type="text" required placeholder="3">
+                <button class="button buttonOne">1</button>
+                <button class="button buttonTwo">2</button>
+                <button class="button buttonThree">3</button>
             </div>
-            <input class="input_first_block" type="text" required placeholder="Старт">
+            <button class="input_first_block">Старт</button>
 
         </div>
     </div>
+    <script>
+        const inputFirstBlock = document.querySelector('.input_first_block');
+        const buttonOne = document.querySelector('.buttonOne');
+        buttonOne.onclick = function () {
+            if (inputFirstBlock.onclick) {
+                location.href = 'levelone.html'
+                setTimeout(history.go(), 5000);
+                //location.href = 'http://127.0.0.1:8080/levelone.html';
+                // window.addEventListener('DOMContentLoaded', 'http://localhost:8080/levelone.html');
+                //location.href = 'C:/Users/diana/OneDrive/Desktop/cardgames/levelone.html'
+            }
+        }
+
+        const buttonTwo = document.getElementsByClassName('buttonTwo');
+        buttonOne.onclick = function () {
+            if (inputFirstBlock.onclick) {
+                location.href = 'leveltwo.html'
+                setTimeout(history.go(), 5000);
+            }
+        }
+
+        const buttonThree = document.getElementsByClassName('buttonThree');
+        buttonOne.onclick = function () {
+            if (inputFirstBlock.onclick) {
+                location.href = 'levelthree.html'
+                setTimeout(history.go(), 5000);
+            }
+        }
+
+
+
+
+
+    </script>
 
 </body>
 
