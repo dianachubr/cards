@@ -94,9 +94,14 @@
         <div class="first_block">
             <h1 class="text_first_block">Выбери сложность</h1>
             <div class="buttons">
-                <button class="button buttonOne">1</button>
-                <button class="button buttonTwo">2</button>
-                <button class="button buttonThree">3</button>
+                <input class="button" type="radio" id="choice1" name="" value="1">
+                <label for="choice1">1</label>
+
+                <input class="button" type="radio" id="choice2" name="" value="2">
+                <label for="choice2">2</label>
+
+                <input class="button" type="radio" id="choice3" name="" value="3">
+                <label for="choice3">3</label>
             </div>
             <button class="input_first_block">Старт</button>
 
@@ -104,32 +109,30 @@
     </div>
     <script>
         const inputFirstBlock = document.querySelector('.input_first_block');
-        const buttonOne = document.querySelector('.buttonOne');
-        buttonOne.onclick = function () {
-            if (inputFirstBlock.onclick) {
-                location.href = 'levelone.html'
-                setTimeout(history.go(), 5000);
-                //location.href = 'http://127.0.0.1:8080/levelone.html';
-                // window.addEventListener('DOMContentLoaded', 'http://localhost:8080/levelone.html');
-                //location.href = 'C:/Users/diana/OneDrive/Desktop/cardgames/levelone.html'
-            }
+        const buttons = document.querySelectorAll('.button');
+
+        inputFirstBlock.onclick = function () {
+            buttons.forEach(button => {
+                if (button.checked = true) {
+                    console.log(button.value);
+                    level = button.value;
+                    console.log(level);
+                    if (level = 1) {
+                        window.addEventListener('DOMContentLoaded', leveOne(document.querySelector('.app')));
+                    } if (level = 2) {
+                        window.addEventListener('DOMContentLoaded', leveTwo(document.querySelector('.app')));
+                    } if (level = 3) {
+                        window.addEventListener('DOMContentLoaded', leveThree(document.querySelector('.app')));
+                    }
+                    else {
+                        alert('Выбери сложность');
+                    }
+                }
+
+            });
         }
 
-        const buttonTwo = document.getElementsByClassName('buttonTwo');
-        buttonOne.onclick = function () {
-            if (inputFirstBlock.onclick) {
-                location.href = 'leveltwo.html'
-                setTimeout(history.go(), 5000);
-            }
-        }
 
-        const buttonThree = document.getElementsByClassName('buttonThree');
-        buttonOne.onclick = function () {
-            if (inputFirstBlock.onclick) {
-                location.href = 'levelthree.html'
-                setTimeout(history.go(), 5000);
-            }
-        }
 
 
 

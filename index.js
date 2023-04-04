@@ -6,3 +6,5 @@ const application = window.application = {
     //renderBlock: function (blockName, container) { },
     
 }
+
+let level;
