@@ -1,0 +1,41 @@
+{
+  "name": "cardgames",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 3004",
+    "format": "prettier --write ./src/",
+    "lint:js": "eslint ./src/**/*.js",
+    "lint:css": "stylelint ./src/**/*.css",
+    "lint": "npm run lint:js && npm run lint:css",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianachubr/cardgames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dianachubr/cardgames/issues"
+  },
+  "homepage": "https://github.com/dianachubr/cardgames#readme",
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "axios": "^1.3.5",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.7",
+    "stylelint": "^15.4.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^32.0.0",
+    "stylelint-prettier": "^3.0.0"
+  }
+}

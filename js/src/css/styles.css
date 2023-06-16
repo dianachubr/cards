@@ -1,0 +1,236 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #3b34a0;
+}
+
+.time {
+  width: 155px;
+  height: 72px;
+  left: 22px;
+  top: 41px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.game-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.header {
+  padding: 15px 0;
+}
+
+.section-win {
+  width: 480px;
+  height: 459px;
+  left: 272px;
+  top: 158px;
+  background: #c2f5ff;
+  border-radius: 12px;
+}
+
+.container {
+  width: 480px;
+  height: 459px;
+  left: 272px;
+  top: 158px;
+  background: #c2f5ff;
+  border-radius: 12px;
+  margin-left: 272px;
+  margin-right: 272px;
+}
+
+.game-section {
+  display: flex;
+  justify-content: center;
+}
+
+.game-section__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-menu__title {
+  text-align: center;
+  width: 208px;
+  height: 96px;
+  left: 408px;
+  top: 210px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
+  margin-bottom: 48px;
+}
+
+.restart-btn {
+  width: 246px;
+  height: 50px;
+  left: 755px;
+  top: 52px;
+  background: #7ac100;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.blockButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 67px;
+}
+
+.game-menu__difficult-btn {
+  cursor: pointer;
+  border: none;
+  color: #222;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  width: 98px;
+  height: 98px;
+  left: 341px;
+  top: 354px;
+  background: #ffffff;
+  border-radius: 12px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 72px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #0080c1;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.game-menu__difficult-btn:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.game-menu__difficult-btn:hover {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  background-color: #222;
+  color: #fff;
+}
+
+.game-table {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: 83px;
+  margin-left: 83px;
+}
+
+.game-card {
+  width: 95px;
+  height: 133px;
+  left: 25px;
+  top: 148px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 4px;
+  margin-left: 27px;
+  margin-bottom: 27px;
+}
+.none {
+  display: none;
+}
+
+.game-card img {
+  font-size: 40px;
+}
+
+.game-card img + img {
+  display: block;
+}
+
+.game-card.flip {
+  background: #5dc6ff !important;
+  transform: perspective(100px);
+}
+
+.game-card.flip img {
+  display: block;
+}
+
+.game-card.flip img + img {
+  display: none;
+}
+
+.game-card.successfully {
+  background: #76db82 !important;
+}
+
+.game-card:hover {
+  background: #d1d1c0;
+}
+
+.buttonAndTime {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textWin {
+  width: 256px;
+  height: 48px;
+  left: 384px;
+  top: 289px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #004980;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.textTime {
+  width: 230px;
+  height: 32px;
+  left: 397px;
+  top: 365px;
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  font-feature-settings: "pnum" on, "lnum" on;
+  color: #000000;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
