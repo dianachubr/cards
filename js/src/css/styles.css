@@ -11,6 +11,10 @@ body {
   background: #3b34a0;
 }
 
+.hidden {
+  display: none;
+}
+
 .time {
   width: 155px;
   height: 72px;
@@ -147,6 +151,7 @@ body {
 }
 
 .game-card {
+  visibility: visible;
   width: 95px;
   height: 133px;
   left: 25px;
@@ -160,6 +165,7 @@ body {
   margin-left: 27px;
   margin-bottom: 27px;
 }
+
 .none {
   display: none;
 }

@@ -1,5 +1,7 @@
 let notFlippedCardI;
 let flippedCardI;
+let cards;
+let imgCard;
 let time;
 let minute = 0;
 let second = 0;
@@ -11,6 +13,7 @@ const createGameCard = (defaultIcon) => {
   card.id = defaultIcon;
 
   notFlippedCardI = document.createElement("img");
+  notFlippedCardI.classList.add("img");
   notFlippedCardI.src = "./js/src/img/" + defaultIcon + ".png";
 
   flippedCardI = document.createElement("img");
@@ -47,30 +50,16 @@ function handler() {
 }
 
 function stopTimer() {
-  clearInterval(handler);
+  clearInterval(time);
   document.querySelector(".time").textContent =
     (minute < 10 ? "0" + minute : minute) +
     ":" +
     (second < 10 ? "0" + second : second);
 }
-//function timeOut() {
-//setTimeout(() => {
-// displayNone();
-//}, 5000);
-//}
-
-//function displayNone() {
-// const shownImg = document.getElementsByTagName("img");
-// shownImg.forEach((notFlippedCardI) =>
-//notFlippedCardI.src = "./js/src/img/flippedCardIcon.png"
-//)
-//notFlippedCardI.src = "./js/src/img/flippedCardIcon.png";
-//}
 
 function displayNone() {
-  //cards.forEach((notFlippedCardI) =>
-  notFlippedCardI.src = "./js/src/img/flippedCardIcon.png";
-  //)}
+  // console.log(imgCard);
+  imgCard.forEach((img) => (img.style.visibility = "hidden"));
 }
 
 const createGameMenu = () => {
@@ -152,12 +141,14 @@ const startGame = (difficult) => {
 
   gameSection.append(buttonAndTime, gameTable);
 
-  const cards = document.querySelectorAll(".game-card");
+  imgCard = document.querySelectorAll(".img");
+
+  cards = document.querySelectorAll(".game-card");
 
   //timeOut();
   handler();
 
-  restartBtn.addEventListener("click", createGameMenu);
+  restartBtn.addEventListener("click", clearInterval(handler), createGameMenu);
 
   cards.forEach((card, index) =>
     card.addEventListener("click", () => {
@@ -311,5 +302,11 @@ function win() {
 
   gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);
 
-  restartBtn.addEventListener("click", createGameMenu);
+  restartBtn.addEventListener(
+    "click",
+    // minute = 0,
+    //second = 0,
+    //clearTimeout(timer),
+    createGameMenu
+  );
 }
