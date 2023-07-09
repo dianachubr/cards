@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/dianachubr/cardgames#readme",
   "dependencies": {
+    "ajv": "^8.12.0",
     "http-server": "^14.1.1",
     "lodash": "^4.17.21"
   },
