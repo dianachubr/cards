@@ -7,11 +7,16 @@ const CopyPlugin = require("copy-webpack-plugin");
 const isProduction = process.env.MODE_ENV === "production";
 
 module.exports = {
-  entry: "./js/index.js",
+  entry: "./js/index.ts",
   //mode: "development",
   mode: isProduction ? "production" : "development",
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       { test: /\.css$/, use: [MiniCssExtractPlugin, "css-loader"] },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -22,6 +27,9 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
   },
   optimization: {
     minimizer: [
