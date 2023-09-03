@@ -4,8 +4,9 @@ import { string } from "postcss-selector-parser";
 let notFlippedCardI;
 let flippedCardI;
 let cards;
-let imgCard;
+let imgCard: any[] | NodeListOf<Element>;
 let time;
+let showTime;
 let minute = 0;
 let second = 0;
 
@@ -40,7 +41,7 @@ function startTimer() {
 }
 
 function timer() {
-  time = setTimeout(handler, 1000);
+  let time: ReturnType<typeof setTimeout> = setTimeout(handler, 1000);
 }
 
 function handler() {
@@ -60,7 +61,6 @@ function stopTimer() {
     (minute < 10 ? "0" + minute : minute) +
     ":" +
     (second < 10 ? "0" + second : second);
-  //ReturnType<typeof setTimeout>
 }
 
 function displayNone() {
@@ -129,9 +129,9 @@ const startGame = (difficult) => {
   const buttonAndTime: HTMLDivElement = document.createElement("div");
   buttonAndTime.classList.add("buttonAndTime");
 
-  const time: HTMLDivElement = document.createElement("div"); //const
-  time.classList.add("time");
-  time.textContent = "00:00";
+  const showTime: HTMLDivElement = document.createElement("div"); //const
+  showTime.classList.add("time");
+  showTime.textContent = "00:00";
 
   const gameTable: HTMLDivElement = document.createElement("div");
   gameTable.classList.add("game-table");
@@ -143,7 +143,7 @@ const startGame = (difficult) => {
   restartBtn.classList.add("restart-btn");
   restartBtn.textContent = "Начать заново";
 
-  buttonAndTime.append(time, restartBtn);
+  buttonAndTime.append(showTime, restartBtn);
 
   shuffle(duplicatedCardsIcons);
 
@@ -155,13 +155,13 @@ const startGame = (difficult) => {
 
   imgCard = document.querySelectorAll(".img");
 
-  cards = document.querySelectorAll(".game-card");
+  let cards: NodeListOf<Element> = document.querySelectorAll(".game-card");
 
   //timeOut();
   handler();
   //restartBtn.addEventListener("click", createGameMenu());
   restartBtn.addEventListener("click", () => {
-    clearTimeout(handler), createGameMenu();
+    clearTimeout(time), createGameMenu();
   });
 
   cards.forEach((card, index) =>
@@ -313,7 +313,7 @@ function win() {
 
   const elapsedTime = document.createElement("div");
   elapsedTime.classList.add("time");
-  elapsedTime.textContent = time;
+  elapsedTime.textContent = showTime;
 
   const restartBtn = document.createElement("button");
   restartBtn.classList.add("restart-btn");
@@ -324,6 +324,6 @@ function win() {
   restartBtn.addEventListener("click", () => {
     // minute = 0,
     //second = 0,
-    clearTimeout(handler), createGameMenu();
+    clearTimeout(time), createGameMenu();
   });
 }
