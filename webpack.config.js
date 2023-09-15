@@ -8,7 +8,6 @@ const isProduction = process.env.MODE_ENV === "production";
 
 module.exports = {
   entry: "./js/index.ts",
-  //mode: "development",
   mode: isProduction ? "production" : "development",
   module: {
     rules: [
@@ -33,7 +32,7 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      '...',
+      "...",
       new CssMinimizerPlugin(),
     ],
   },
@@ -49,10 +48,6 @@ module.exports = {
         {
           from: "static",
           to: "static",
-          //noErrorOnMissing: true,
-         // globOptions: {
-           // ignore: [".DS_Store", "**/index.html"],
-         // },
         },
       ],
     }),

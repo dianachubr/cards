@@ -1,5 +1,5 @@
 import { string } from "postcss-selector-parser";
-//import './js/src/css/styles.css';
+import "./src/css/styles.css";
 
 let notFlippedCardI;
 let flippedCardI;
@@ -10,7 +10,7 @@ let showTime;
 let minute = 0;
 let second = 0;
 
-//const createGameCard = (defaultIcon, flippedCardIcon) => {
+/*const createGameCard = (defaultIcon, flippedCardIcon) => {*/
 const createGameCard = (defaultIcon: string) => {
   const card = document.createElement("div") as HTMLElement;
   card.classList.add("game-card");
@@ -23,7 +23,7 @@ const createGameCard = (defaultIcon: string) => {
   flippedCardI = document.createElement("img");
   flippedCardI.src = "./js/src/img/flippedCardIcon.png";
 
-  //card.append(notFlippedCardI);
+  /*card.append(notFlippedCardI);*/
   card.append(flippedCardI, notFlippedCardI);
 
   setTimeout(() => {
@@ -46,8 +46,8 @@ function timer() {
 
 function handler() {
   startTimer();
-  // minute = 0;
-  // second = 0;
+  /* minute = 0;*/
+  /* second = 0;*/
   document.querySelector(".time")!.textContent =
     (minute < 10 ? "0" + minute : minute) +
     ":" +
@@ -64,7 +64,7 @@ function stopTimer() {
 }
 
 function displayNone() {
-  // console.log(imgCard);
+  /* console.log(imgCard);*/
   imgCard.forEach((img) => (img.style.visibility = "hidden"));
 }
 
@@ -114,9 +114,9 @@ const cardsApp = () => {
 cardsApp();
 
 const startGame = (difficult) => {
-  let firstCard; //: null = null
-  let secondCard; //: null = null;
-  let clickable; //: boolean = true;
+  let firstCard; /*: null = null*/
+  let secondCard; /*: null = null;*/
+  let clickable; /*: boolean = true;*/
 
   const gameSection: HTMLElement | null = document.querySelector(
     ".game-section__container"
@@ -157,9 +157,9 @@ const startGame = (difficult) => {
 
   let cards: NodeListOf<Element> = document.querySelectorAll(".game-card");
 
-  //timeOut();
+  /*timeOut();*/
   handler();
-  //restartBtn.addEventListener("click", createGameMenu());
+  /*restartBtn.addEventListener("click", createGameMenu());*/
   restartBtn.addEventListener("click", () => {
     clearTimeout(time), createGameMenu();
   });
@@ -207,9 +207,9 @@ const startGame = (difficult) => {
             }, 500);
           }
         }
-        //if (
-        // Array.from(cards).every((card) => card.className.includes("flip"))
-        //)
+        /*if (*/
+        /* Array.from(cards).every((card) => card.className.includes("flip"))*/
+        /*)*/
         if (
           Array.from(cards).every((card) => card.className.includes("flip"))
         ) {
@@ -322,8 +322,8 @@ function win() {
   gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);
 
   restartBtn.addEventListener("click", () => {
-    // minute = 0,
-    //second = 0,
+    /* minute = 0,*/
+    /*second = 0,*/
     clearTimeout(time), createGameMenu();
   });
 }
