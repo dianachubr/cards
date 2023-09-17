@@ -1,32 +1,330 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/index.js":
-/*!*********************!*\
-  !*** ./js/index.js ***!
-  \*********************/
-/***/ (() => {
+/***/ "./js/src/css/styles.css":
+/*!*******************************!*\
+  !*** ./js/src/css/styles.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("let notFlippedCardI;\r\nlet flippedCardI;\r\nlet cards;\r\nlet imgCard;\r\nlet time;\r\nlet minute = 0;\r\nlet second = 0;\r\n\r\n//const createGameCard = (defaultIcon, flippedCardIcon) => {\r\nconst createGameCard = (defaultIcon) => {\r\n  const card = document.createElement(\"div\");\r\n  card.classList.add(\"game-card\");\r\n  card.id = defaultIcon;\r\n\r\n  notFlippedCardI = document.createElement(\"img\");\r\n  notFlippedCardI.classList.add(\"img\");\r\n  notFlippedCardI.src = \"./js/src/img/\" + defaultIcon + \".png\";\r\n\r\n  flippedCardI = document.createElement(\"img\");\r\n  flippedCardI.src = \"./js/src/img/flippedCardIcon.png\";\r\n\r\n  //card.append(notFlippedCardI);\r\n  card.append(flippedCardI, notFlippedCardI);\r\n\r\n  setTimeout(() => {\r\n    displayNone();\r\n  }, 5000);\r\n  return card;\r\n};\r\n\r\nfunction startTimer() {\r\n  second++;\r\n  if (second >= 60) {\r\n    second = 0;\r\n    minute++;\r\n  }\r\n}\r\n\r\nfunction timer() {\r\n  time = setTimeout(handler, 1000);\r\n}\r\n\r\nfunction handler() {\r\n  startTimer();\r\n  document.querySelector(\".time\").textContent =\r\n    (minute < 10 ? \"0\" + minute : minute) +\r\n    \":\" +\r\n    (second < 10 ? \"0\" + second : second);\r\n  timer();\r\n}\r\n\r\nfunction stopTimer() {\r\n  clearInterval(time);\r\n  document.querySelector(\".time\").textContent =\r\n    (minute < 10 ? \"0\" + minute : minute) +\r\n    \":\" +\r\n    (second < 10 ? \"0\" + second : second);\r\n}\r\n\r\nfunction displayNone() {\r\n  // console.log(imgCard);\r\n  imgCard.forEach((img) => (img.style.visibility = \"hidden\"));\r\n}\r\n\r\nconst createGameMenu = () => {\r\n  const gameSection = document.querySelector(\".game-section__container\");\r\n  gameSection.innerHTML = \"\";\r\n  gameSection.classList.add(\"container\");\r\n\r\n  const title = document.createElement(\"h2\");\r\n  title.textContent = \"Выбери сложность\";\r\n  title.classList.add(\"game-menu__title\");\r\n\r\n  const blockButtons = document.createElement(\"div\");\r\n  blockButtons.classList.add(\"blockButtons\");\r\n\r\n  const restartBtn = document.createElement(\"button\");\r\n  restartBtn.classList.add(\"restart-btn\");\r\n  restartBtn.textContent = \"Старт\";\r\n\r\n  const createDifficultButton = (difficult) => {\r\n    const button = document.createElement(\"button\");\r\n    button.classList.add(\"game-menu__difficult-btn\");\r\n    button.textContent = difficult;\r\n\r\n    button.onclick = function () {\r\n      restartBtn.addEventListener(\"click\", () => startGame(difficult));\r\n    };\r\n\r\n    return button;\r\n  };\r\n\r\n  blockButtons.append(\r\n    createDifficultButton(1),\r\n    createDifficultButton(2),\r\n    createDifficultButton(3)\r\n  );\r\n\r\n  gameSection.append(title, blockButtons, restartBtn);\r\n};\r\n\r\nconst cardsApp = () => {\r\n  createGameMenu();\r\n};\r\n\r\ncardsApp();\r\n\r\nconst startGame = (difficult) => {\r\n  let firstCard = null;\r\n  let secondCard = null;\r\n  let clickable = true;\r\n\r\n  const gameSection = document.querySelector(\".game-section__container\");\r\n  gameSection.classList.remove(\"container\");\r\n  gameSection.innerHTML = \"\";\r\n\r\n  const buttonAndTime = document.createElement(\"div\");\r\n  buttonAndTime.classList.add(\"buttonAndTime\");\r\n\r\n  time = document.createElement(\"div\");\r\n  time.classList.add(\"time\");\r\n  time.textContent = \"00:00\";\r\n\r\n  const gameTable = document.createElement(\"div\");\r\n  gameTable.classList.add(\"game-table\");\r\n\r\n  const cardsIcons = createIconsArray(difficult);\r\n  const duplicatedCardsIcons = duplicateArray(cardsIcons);\r\n\r\n  const restartBtn = document.createElement(\"button\");\r\n  restartBtn.classList.add(\"restart-btn\");\r\n  restartBtn.textContent = \"Начать заново\";\r\n\r\n  buttonAndTime.append(time, restartBtn);\r\n\r\n  shuffle(duplicatedCardsIcons);\r\n\r\n  duplicatedCardsIcons.forEach((images) =>\r\n    gameTable.append(createGameCard(images))\r\n  );\r\n\r\n  gameSection.append(buttonAndTime, gameTable);\r\n\r\n  imgCard = document.querySelectorAll(\".img\");\r\n\r\n  cards = document.querySelectorAll(\".game-card\");\r\n\r\n  //timeOut();\r\n  handler();\r\n\r\n  restartBtn.addEventListener(\"click\", clearInterval(handler), createGameMenu);\r\n\r\n  cards.forEach((card, index) =>\r\n    card.addEventListener(\"click\", () => {\r\n      if (clickable == true && !card.classList.contains(\"successfully\")) {\r\n        card.classList.add(\"flip\");\r\n\r\n        if (firstCard == null) {\r\n          firstCard = index;\r\n          console.log(firstCard);\r\n        } else {\r\n          if (index != firstCard) {\r\n            secondCard = index;\r\n            clickable = false;\r\n          }\r\n        }\r\n\r\n        if (\r\n          firstCard != null &&\r\n          secondCard != null &&\r\n          firstCard != secondCard\r\n        ) {\r\n          if (cards[firstCard].id === cards[secondCard].id) {\r\n            console.log(cards[firstCard]);\r\n            console.log(card.id);\r\n\r\n            setTimeout(() => {\r\n              cards[firstCard].classList.add(\"successfully\");\r\n              cards[secondCard].classList.add(\"successfully\");\r\n\r\n              firstCard = null;\r\n              secondCard = null;\r\n              clickable = true;\r\n            }, 500);\r\n          } else {\r\n            setTimeout(() => {\r\n              cards[firstCard].classList.remove(\"flip\");\r\n              cards[secondCard].classList.remove(\"flip\");\r\n\r\n              firstCard = null;\r\n              secondCard = null;\r\n              clickable = true;\r\n            }, 500);\r\n          }\r\n        }\r\n        if (\r\n          Array.from(cards).every((card) => card.className.includes(\"flip\"))\r\n        ) {\r\n          win();\r\n          stopTimer();\r\n        }\r\n      }\r\n    })\r\n  );\r\n};\r\n\r\nconst shuffle = (array) => {\r\n  let currentIndex = array.length,\r\n    randomIndex;\r\n\r\n  while (currentIndex != 0) {\r\n    randomIndex = Math.floor(Math.random() * currentIndex);\r\n    currentIndex--;\r\n\r\n    [array[currentIndex], array[randomIndex]] = [\r\n      array[randomIndex],\r\n      array[currentIndex],\r\n    ];\r\n  }\r\n\r\n  return array;\r\n};\r\n\r\nconst duplicateArray = (array) =>\r\n  array.reduce((res, current) => res.concat([current, current]), []);\r\n\r\nconst createIconsArray = (initialCount) => {\r\n  const cardsIcons = [\r\n    \"6bubni\",\r\n    \"7bubni\",\r\n    \"8bubni\",\r\n    \"9bubni\",\r\n    \"10bubni\",\r\n    \"valetbubni\",\r\n    \"damabubni\",\r\n    \"korolbubni\",\r\n    \"tuzbubni\",\r\n    \"6chervi\",\r\n    \"7chervi\",\r\n    \"8chervi\",\r\n    \"9chervi\",\r\n    \"10chervi\",\r\n    \"valetchervi\",\r\n    \"damachervi\",\r\n    \"korolchervi\",\r\n    \"tuzchervi\",\r\n    \"6piki\",\r\n    \"7piki\",\r\n    \"8piki\",\r\n    \"9piki\",\r\n    \"10piki\",\r\n    \"valetpiki\",\r\n    \"damapiki\",\r\n    \"korolpiki\",\r\n    \"tuzpiki\",\r\n    \"6kresti\",\r\n    \"7kresti\",\r\n    \"8kresti\",\r\n    \"9kresti\",\r\n    \"10kresti\",\r\n    \"valetkresti\",\r\n    \"damakresti\",\r\n    \"korolkresti\",\r\n    \"tuzkresti\",\r\n  ];\r\n\r\n  switch (initialCount) {\r\n    case 1:\r\n      return cardsIcons.slice(0, 3);\r\n    case 2:\r\n      return cardsIcons.slice(0, 6);\r\n    case 3:\r\n      return cardsIcons.slice(0, 9);\r\n    default:\r\n      break;\r\n  }\r\n};\r\n\r\nfunction win() {\r\n  const gameSection = document.querySelector(\".game-section__container\");\r\n  gameSection.innerHTML = \"\";\r\n  gameSection.classList.add(\"container\");\r\n\r\n  const winImg = document.createElement(\"img\");\r\n  winImg.src = \"./js/src/img/win.png\";\r\n\r\n  const textWin = document.createElement(\"h1\");\r\n  textWin.textContent = \"Вы выиграли!\";\r\n  textWin.classList.add(\"textWin\");\r\n\r\n  const textTime = document.createElement(\"h2\");\r\n  textTime.textContent = \"Затраченное время:\";\r\n  textTime.classList.add(\"textTime\");\r\n\r\n  const elapsedTime = document.createElement(\"div\");\r\n  elapsedTime.classList.add(\"time\");\r\n  elapsedTime.textContent = time;\r\n\r\n  const restartBtn = document.createElement(\"button\");\r\n  restartBtn.classList.add(\"restart-btn\");\r\n  restartBtn.textContent = \"Играть снова\";\r\n\r\n  gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);\r\n\r\n  restartBtn.addEventListener(\r\n    \"click\",\r\n    // minute = 0,\r\n    //second = 0,\r\n    //clearTimeout(timer),\r\n    createGameMenu\r\n  );\r\n}\r\n\n\n//# sourceURL=webpack://cardgames/./js/index.js?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
 /******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./js/index.js"]();
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
 /******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!*********************!*\
+  !*** ./js/index.ts ***!
+  \*********************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_css_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/css/styles.css */ "./js/src/css/styles.css");
+//import { string } from "postcss-selector-parser";
+
+var notFlippedCardI;
+var flippedCardI;
+var cards;
+var imgCard;
+var time;
+var showTime;
+var minute = 0;
+var second = 0;
+/*const createGameCard = (defaultIcon, flippedCardIcon) => {*/
+var createGameCard = function (defaultIcon) {
+    var card = document.createElement("div");
+    card.classList.add("game-card");
+    card.id = defaultIcon;
+    notFlippedCardI = document.createElement("img");
+    notFlippedCardI.classList.add("img");
+    notFlippedCardI.src = "./js/src/img/" + defaultIcon + ".png";
+    flippedCardI = document.createElement("img");
+    flippedCardI.src = "./js/src/img/flippedCardIcon.png";
+    /*card.append(notFlippedCardI);*/
+    card.append(flippedCardI, notFlippedCardI);
+    setTimeout(function () {
+        displayNone();
+    }, 5000);
+    return card;
+};
+function startTimer() {
+    second++;
+    if (second >= 60) {
+        second = 0;
+        minute++;
+    }
+}
+function timer() {
+    var time = setTimeout(handler, 1000);
+}
+function handler() {
+    startTimer();
+    /* minute = 0;*/
+    /* second = 0;*/
+    document.querySelector(".time").textContent =
+        (minute < 10 ? "0" + minute : minute) +
+            ":" +
+            (second < 10 ? "0" + second : second);
+    timer();
+}
+function stopTimer() {
+    clearInterval(time);
+    document.querySelector(".time").textContent =
+        (minute < 10 ? "0" + minute : minute) +
+            ":" +
+            (second < 10 ? "0" + second : second);
+}
+function displayNone() {
+    /* console.log(imgCard);*/
+    imgCard.forEach(function (img) { return (img.style.visibility = "hidden"); });
+}
+var createGameMenu = function () {
+    var gameSection = document.querySelector(".game-section__container");
+    gameSection.innerHTML = "";
+    gameSection.classList.add("container");
+    var title = document.createElement("h2");
+    title.textContent = "Выбери сложность";
+    title.classList.add("game-menu__title");
+    var blockButtons = document.createElement("div");
+    blockButtons.classList.add("blockButtons");
+    var restartBtn = document.createElement("button");
+    restartBtn.classList.add("restart-btn");
+    restartBtn.textContent = "Старт";
+    var createDifficultButton = function (difficult) {
+        var button = document.createElement("button");
+        button.classList.add("game-menu__difficult-btn");
+        button.textContent = difficult;
+        button.onclick = function () {
+            restartBtn.addEventListener("click", function () { return startGame(difficult); });
+        };
+        return button;
+    };
+    blockButtons.append(createDifficultButton(1), createDifficultButton(2), createDifficultButton(3));
+    gameSection.append(title, blockButtons, restartBtn);
+};
+var cardsApp = function () {
+    createGameMenu();
+};
+cardsApp();
+var startGame = function (difficult) {
+    var firstCard; /*: null = null*/
+    var secondCard; /*: null = null;*/
+    var clickable; /*: boolean = true;*/
+    var gameSection = document.querySelector(".game-section__container");
+    if (gameSection) {
+        gameSection.classList.remove("container");
+        gameSection.innerHTML = "";
+    }
+    var buttonAndTime = document.createElement("div");
+    buttonAndTime.classList.add("buttonAndTime");
+    var showTime = document.createElement("div"); //const
+    showTime.classList.add("time");
+    showTime.textContent = "00:00";
+    var gameTable = document.createElement("div");
+    gameTable.classList.add("game-table");
+    var cardsIcons = createIconsArray(difficult);
+    var duplicatedCardsIcons = duplicateArray(cardsIcons);
+    var restartBtn = document.createElement("button");
+    restartBtn.classList.add("restart-btn");
+    restartBtn.textContent = "Начать заново";
+    buttonAndTime.append(showTime, restartBtn);
+    shuffle(duplicatedCardsIcons);
+    duplicatedCardsIcons.forEach(function (images) {
+        return gameTable.append(createGameCard(images));
+    });
+    gameSection === null || gameSection === void 0 ? void 0 : gameSection.append(buttonAndTime, gameTable);
+    imgCard = document.querySelectorAll(".img");
+    var cards = document.querySelectorAll(".game-card");
+    /*timeOut();*/
+    handler();
+    /*restartBtn.addEventListener("click", createGameMenu());*/
+    restartBtn.addEventListener("click", function () {
+        clearTimeout(time), createGameMenu();
+    });
+    cards.forEach(function (card, index) {
+        return card.addEventListener("click", function () {
+            if (clickable == true && !card.classList.contains("successfully")) {
+                card.classList.add("flip");
+                if (firstCard == null) {
+                    firstCard = index;
+                    console.log(firstCard);
+                }
+                else {
+                    if (index != firstCard) {
+                        secondCard = index;
+                        clickable = false;
+                    }
+                }
+                if (firstCard != null &&
+                    secondCard != null &&
+                    firstCard != secondCard) {
+                    if (cards[firstCard].id === cards[secondCard].id) {
+                        console.log(cards[firstCard]);
+                        console.log(card.id);
+                        setTimeout(function () {
+                            cards[firstCard].classList.add("successfully");
+                            cards[secondCard].classList.add("successfully");
+                            firstCard = null;
+                            secondCard = null;
+                            clickable = true;
+                        }, 500);
+                    }
+                    else {
+                        setTimeout(function () {
+                            cards[firstCard].classList.remove("flip");
+                            cards[secondCard].classList.remove("flip");
+                            firstCard = null;
+                            secondCard = null;
+                            clickable = true;
+                        }, 500);
+                    }
+                }
+                /*if (*/
+                /* Array.from(cards).every((card) => card.className.includes("flip"))*/
+                /*)*/
+                if (Array.from(cards).every(function (card) { return card.className.includes("flip"); })) {
+                    win();
+                    stopTimer();
+                }
+            }
+        });
+    });
+};
+var shuffle = function (array) {
+    var _a;
+    var currentIndex = array.length, randomIndex;
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        _a = [
+            array[randomIndex],
+            array[currentIndex],
+        ], array[currentIndex] = _a[0], array[randomIndex] = _a[1];
+    }
+    return array;
+};
+var duplicateArray = function (array) {
+    return array.reduce(function (res, current) { return res.concat([current, current]); }, []);
+};
+var createIconsArray = function (initialCount) {
+    var cardsIcons = [
+        "6bubni",
+        "7bubni",
+        "8bubni",
+        "9bubni",
+        "10bubni",
+        "valetbubni",
+        "damabubni",
+        "korolbubni",
+        "tuzbubni",
+        "6chervi",
+        "7chervi",
+        "8chervi",
+        "9chervi",
+        "10chervi",
+        "valetchervi",
+        "damachervi",
+        "korolchervi",
+        "tuzchervi",
+        "6piki",
+        "7piki",
+        "8piki",
+        "9piki",
+        "10piki",
+        "valetpiki",
+        "damapiki",
+        "korolpiki",
+        "tuzpiki",
+        "6kresti",
+        "7kresti",
+        "8kresti",
+        "9kresti",
+        "10kresti",
+        "valetkresti",
+        "damakresti",
+        "korolkresti",
+        "tuzkresti",
+    ];
+    switch (initialCount) {
+        case 1:
+            return cardsIcons.slice(0, 3);
+        case 2:
+            return cardsIcons.slice(0, 6);
+        case 3:
+            return cardsIcons.slice(0, 9);
+        default:
+            break;
+    }
+};
+function win() {
+    var gameSection = document.querySelector(".game-section__container");
+    gameSection.innerHTML = "";
+    gameSection.classList.add("container");
+    var winImg = document.createElement("img");
+    winImg.src = "./js/src/img/win.png";
+    var textWin = document.createElement("h1");
+    textWin.textContent = "Вы выиграли!";
+    textWin.classList.add("textWin");
+    var textTime = document.createElement("h2");
+    textTime.textContent = "Затраченное время:";
+    textTime.classList.add("textTime");
+    var elapsedTime = document.createElement("div");
+    elapsedTime.classList.add("time");
+    elapsedTime.textContent = showTime;
+    var restartBtn = document.createElement("button");
+    restartBtn.classList.add("restart-btn");
+    restartBtn.textContent = "Играть снова";
+    gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);
+    restartBtn.addEventListener("click", function () {
+        /* minute = 0,*/
+        /*second = 0,*/
+        clearTimeout(time), createGameMenu();
+    });
+}
+
+})();
+
 /******/ })()
 ;
+//# sourceMappingURL=bundle.js.map

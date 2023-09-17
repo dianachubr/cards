@@ -1,5 +1,6 @@
-import { string } from "postcss-selector-parser";
+//import { string } from "postcss-selector-parser";
 import "./src/css/styles.css";
+import * as _ from "lodash";
 
 let notFlippedCardI;
 let flippedCardI;

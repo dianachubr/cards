@@ -16,7 +16,7 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
-      { test: /\.css$/, use: [MiniCssExtractPlugin, "css-loader"] },
+      { test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"] },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
