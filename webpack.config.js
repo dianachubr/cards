@@ -31,10 +31,7 @@ module.exports = {
     extensions: [".ts", ".js"],
   },
   optimization: {
-    minimizer: [
-      "...",
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: ["...", new CssMinimizerPlugin()],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -57,4 +54,8 @@ module.exports = {
     }),
   ],
   devtool: isProduction ? "hidden-source-map" : "source-map",
+  devServer: {
+    port: 3000,
+    static: path.join(__dirname, "./dist"),
+  },
 };

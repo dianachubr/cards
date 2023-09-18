@@ -63,6 +63,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_css_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/css/styles.css */ "./js/src/css/styles.css");
 //import { string } from "postcss-selector-parser";
 
+//import notFlippedCardI from "./js/src/img/";
+//import flippedCardI from "./js/src/img/flippedCardIcon.png";
 var notFlippedCardI;
 var flippedCardI;
 var cards;
