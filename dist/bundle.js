@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/src/css/styles.css":
-/*!*******************************!*\
-  !*** ./js/src/css/styles.css ***!
-  \*******************************/
+/***/ "./src/css/styles.css":
+/*!****************************!*\
+  !*** ./src/css/styles.css ***!
+  \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -56,15 +56,13 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*********************!*\
-  !*** ./js/index.ts ***!
-  \*********************/
+/*!*************************!*\
+  !*** ./src/js/index.ts ***!
+  \*************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_css_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/css/styles.css */ "./js/src/css/styles.css");
+/* harmony import */ var _css_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/styles.css */ "./src/css/styles.css");
 //import { string } from "postcss-selector-parser";
 
-//import notFlippedCardI from "./js/src/img/";
-//import flippedCardI from "./js/src/img/flippedCardIcon.png";
 var notFlippedCardI;
 var flippedCardI;
 var cards;
@@ -80,9 +78,9 @@ var createGameCard = function (defaultIcon) {
     card.id = defaultIcon;
     notFlippedCardI = document.createElement("img");
     notFlippedCardI.classList.add("img");
-    notFlippedCardI.src = "./js/src/img/" + defaultIcon + ".png";
+    notFlippedCardI.src = "./static/" + defaultIcon + ".png";
     flippedCardI = document.createElement("img");
-    flippedCardI.src = "./js/src/img/flippedCardIcon.png";
+    flippedCardI.src = "./static/flippedCardIcon.png";
     /*card.append(notFlippedCardI);*/
     card.append(flippedCardI, notFlippedCardI);
     setTimeout(function () {
@@ -104,11 +102,14 @@ function handler() {
     startTimer();
     /* minute = 0;*/
     /* second = 0;*/
-    document.querySelector(".time").textContent =
-        (minute < 10 ? "0" + minute : minute) +
-            ":" +
-            (second < 10 ? "0" + second : second);
-    timer();
+    debugger;
+    if (document.querySelector(".time")) {
+        document.querySelector(".time").textContent =
+            (minute < 10 ? "0" + minute : minute) +
+                ":" +
+                (second < 10 ? "0" + second : second);
+        timer();
+    }
 }
 function stopTimer() {
     clearInterval(time);
@@ -177,7 +178,7 @@ var startGame = function (difficult) {
     });
     gameSection === null || gameSection === void 0 ? void 0 : gameSection.append(buttonAndTime, gameTable);
     imgCard = document.querySelectorAll(".img");
-    var cards = document.querySelectorAll(".game-card");
+    cards = document.querySelectorAll(".game-card");
     /*timeOut();*/
     handler();
     /*restartBtn.addEventListener("click", createGameMenu());*/
@@ -304,7 +305,7 @@ function win() {
     gameSection.innerHTML = "";
     gameSection.classList.add("container");
     var winImg = document.createElement("img");
-    winImg.src = "./js/src/img/win.png";
+    winImg.src = "./static/win.png";
     var textWin = document.createElement("h1");
     textWin.textContent = "Вы выиграли!";
     textWin.classList.add("textWin");

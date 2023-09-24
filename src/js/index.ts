@@ -1,17 +1,17 @@
 //import { string } from "postcss-selector-parser";
-import "./src/css/styles.css";
+import "../css/styles.css";
 import * as _ from "lodash";
-//import notFlippedCardI from "./js/src/img/";
-//import flippedCardI from "./js/src/img/flippedCardIcon.png";
 
 let notFlippedCardI;
 let flippedCardI;
-let cards;
+let cards: NodeListOf<Element>;
 let imgCard: any[] | NodeListOf<Element>;
 let time;
 let showTime;
-let minute = 0;
-let second = 0;
+let minute: number = 0;
+let second: number = 0;
+let finishTime: string;
+//let gameOver: string;
 
 /*const createGameCard = (defaultIcon, flippedCardIcon) => {*/
 const createGameCard = (defaultIcon: string) => {
@@ -21,14 +21,15 @@ const createGameCard = (defaultIcon: string) => {
 
   notFlippedCardI = document.createElement("img");
   notFlippedCardI.classList.add("img");
-  notFlippedCardI.src = "./js/src/img/" + defaultIcon + ".png";
+  notFlippedCardI.src = "./static/" + defaultIcon + ".png";
 
   flippedCardI = document.createElement("img");
-  flippedCardI.src = "./js/src/img/flippedCardIcon.png";
+  flippedCardI.src = "./static/flippedCardIcon.png";
 
   /*card.append(notFlippedCardI);*/
   card.append(flippedCardI, notFlippedCardI);
-
+  minute = 0;
+  second = 0;
   setTimeout(() => {
     displayNone();
   }, 5000);
@@ -49,13 +50,17 @@ function timer() {
 
 function handler() {
   startTimer();
-  /* minute = 0;*/
-  /* second = 0;*/
-  document.querySelector(".time")!.textContent =
-    (minute < 10 ? "0" + minute : minute) +
-    ":" +
-    (second < 10 ? "0" + second : second);
-  timer();
+  //minute = 0;
+  //second = 0;
+  //debugger;
+  //showTime.textContent = "00:00";
+  if (document.querySelector(".time") as HTMLDivElement) {
+    finishTime = document.querySelector(".time")!.textContent =
+      (minute < 10 ? "0" + minute : minute) +
+      ":" +
+      (second < 10 ? "0" + second : second);
+    timer();
+  }
 }
 
 function stopTimer() {
@@ -72,6 +77,8 @@ function displayNone() {
 }
 
 const createGameMenu = () => {
+  //minute = 0;
+  //second = 0;
   const gameSection = document.querySelector(
     ".game-section__container"
   ) as HTMLDivElement;
@@ -119,7 +126,7 @@ cardsApp();
 const startGame = (difficult) => {
   let firstCard; /*: null = null*/
   let secondCard; /*: null = null;*/
-  let clickable; /*: boolean = true;*/
+  let clickable: boolean = true;
 
   const gameSection: HTMLElement | null = document.querySelector(
     ".game-section__container"
@@ -132,9 +139,9 @@ const startGame = (difficult) => {
   const buttonAndTime: HTMLDivElement = document.createElement("div");
   buttonAndTime.classList.add("buttonAndTime");
 
-  const showTime: HTMLDivElement = document.createElement("div"); //const
+  const showTime: HTMLDivElement = document.createElement("div");
   showTime.classList.add("time");
-  showTime.textContent = "00:00";
+  // showTime.textContent = "00:00";
 
   const gameTable: HTMLDivElement = document.createElement("div");
   gameTable.classList.add("game-table");
@@ -158,12 +165,14 @@ const startGame = (difficult) => {
 
   imgCard = document.querySelectorAll(".img");
 
-  let cards: NodeListOf<Element> = document.querySelectorAll(".game-card");
+  cards = document.querySelectorAll(".game-card");
 
   /*timeOut();*/
   handler();
   /*restartBtn.addEventListener("click", createGameMenu());*/
   restartBtn.addEventListener("click", () => {
+    //minute = 0;
+    //second = 0;
     clearTimeout(time), createGameMenu();
   });
 
@@ -217,6 +226,7 @@ const startGame = (difficult) => {
           Array.from(cards).every((card) => card.className.includes("flip"))
         ) {
           win();
+
           stopTimer();
         }
       }
@@ -304,7 +314,7 @@ function win() {
   gameSection.classList.add("container");
 
   const winImg = document.createElement("img");
-  winImg.src = "./js/src/img/win.png";
+  winImg.src = "./static/win.png";
 
   const textWin = document.createElement("h1");
   textWin.textContent = "Вы выиграли!";
@@ -316,7 +326,11 @@ function win() {
 
   const elapsedTime = document.createElement("div");
   elapsedTime.classList.add("time");
-  elapsedTime.textContent = showTime;
+  //const finishTime = document.querySelector(".time").textContent;
+  elapsedTime.textContent = finishTime;
+  console.log(finishTime);
+  clearTimeout(time);
+  //elapsedTime.textContent = showTime;
 
   const restartBtn = document.createElement("button");
   restartBtn.classList.add("restart-btn");
@@ -325,8 +339,8 @@ function win() {
   gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);
 
   restartBtn.addEventListener("click", () => {
-    /* minute = 0,*/
-    /*second = 0,*/
+    minute = 0;
+    second = 0;
     clearTimeout(time), createGameMenu();
   });
 }
