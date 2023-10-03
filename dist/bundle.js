@@ -71,6 +71,8 @@ var time;
 var showTime;
 var minute = 0;
 var second = 0;
+var finishTime;
+//let gameOver: string;
 /*const createGameCard = (defaultIcon, flippedCardIcon) => {*/
 var createGameCard = function (defaultIcon) {
     var card = document.createElement("div");
@@ -83,6 +85,8 @@ var createGameCard = function (defaultIcon) {
     flippedCardI.src = "./static/flippedCardIcon.png";
     /*card.append(notFlippedCardI);*/
     card.append(flippedCardI, notFlippedCardI);
+    minute = 0;
+    second = 0;
     setTimeout(function () {
         displayNone();
     }, 5000);
@@ -100,11 +104,12 @@ function timer() {
 }
 function handler() {
     startTimer();
-    /* minute = 0;*/
-    /* second = 0;*/
-    debugger;
+    //minute = 0;
+    //second = 0;
+    //debugger;
+    //showTime.textContent = "00:00";
     if (document.querySelector(".time")) {
-        document.querySelector(".time").textContent =
+        finishTime = document.querySelector(".time").textContent =
             (minute < 10 ? "0" + minute : minute) +
                 ":" +
                 (second < 10 ? "0" + second : second);
@@ -123,6 +128,8 @@ function displayNone() {
     imgCard.forEach(function (img) { return (img.style.visibility = "hidden"); });
 }
 var createGameMenu = function () {
+    //minute = 0;
+    //second = 0;
     var gameSection = document.querySelector(".game-section__container");
     gameSection.innerHTML = "";
     gameSection.classList.add("container");
@@ -153,7 +160,7 @@ cardsApp();
 var startGame = function (difficult) {
     var firstCard; /*: null = null*/
     var secondCard; /*: null = null;*/
-    var clickable; /*: boolean = true;*/
+    var clickable = true;
     var gameSection = document.querySelector(".game-section__container");
     if (gameSection) {
         gameSection.classList.remove("container");
@@ -161,9 +168,9 @@ var startGame = function (difficult) {
     }
     var buttonAndTime = document.createElement("div");
     buttonAndTime.classList.add("buttonAndTime");
-    var showTime = document.createElement("div"); //const
+    var showTime = document.createElement("div");
     showTime.classList.add("time");
-    showTime.textContent = "00:00";
+    // showTime.textContent = "00:00";
     var gameTable = document.createElement("div");
     gameTable.classList.add("game-table");
     var cardsIcons = createIconsArray(difficult);
@@ -183,6 +190,8 @@ var startGame = function (difficult) {
     handler();
     /*restartBtn.addEventListener("click", createGameMenu());*/
     restartBtn.addEventListener("click", function () {
+        //minute = 0;
+        //second = 0;
         clearTimeout(time), createGameMenu();
     });
     cards.forEach(function (card, index) {
@@ -314,14 +323,22 @@ function win() {
     textTime.classList.add("textTime");
     var elapsedTime = document.createElement("div");
     elapsedTime.classList.add("time");
-    elapsedTime.textContent = showTime;
+    //const finishTime = document.querySelector(".time").textContent;
+    elapsedTime.textContent = finishTime;
+    console.log(finishTime);
+    clearTimeout(time);
+    console.log(timer);
+    console.log(time);
+    console.log(stopTimer);
+    //stopTimer();
+    //elapsedTime.textContent = showTime;
     var restartBtn = document.createElement("button");
     restartBtn.classList.add("restart-btn");
     restartBtn.textContent = "Играть снова";
     gameSection.append(winImg, textWin, textTime, elapsedTime, restartBtn);
     restartBtn.addEventListener("click", function () {
-        /* minute = 0,*/
-        /*second = 0,*/
+        minute = 0;
+        second = 0;
         clearTimeout(time), createGameMenu();
     });
 }
